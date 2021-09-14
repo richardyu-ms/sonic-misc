@@ -1,7 +1,7 @@
 #!/bin/bash -x 
 
 systemctl stop swss
-#systemctl stop syncd
+systemctl stop syncd
 systemctl stop radv
 systemctl stop lldp
 systemctl stop dhcp_relay

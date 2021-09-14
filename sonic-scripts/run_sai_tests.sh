@@ -79,7 +79,7 @@ export ANSIBLE_KEEP_REMOTE_FILES=1
 #export PYTEST_ADDOPTS=' --pdb -vvv --allow_recover --disable_loganalyzer --skip_sanity --log-file logs/test.log --log-file-level debug'
 export PYTEST_ADDOPTS='-vvvvv --pdb --allow_recover --skip_sanity --sai_test_dir=../SAI/test/saithrift/tests --sai_test_report_dir=./ --disable_loganalyzer '
 export PYTEST_ADDOPTS+='--sai_test_container=syncd '
-#export PYTEST_ADDOPTS +=' --py_saithrift_url=http://100.127.20.23/pipelines/Networking-acs-buildimage-Official/barefoot/internal/latest/target/debs/buster/python-saithrift_0.9.4_amd64.deb'
+#export PYTEST_ADDOPTS+=' --py_saithrift_url=http://100.127.20.23/pipelines/Networking-acs-buildimage-Official/barefoot/internal/latest/target/debs/buster/python-saithrift_0.9.4_amd64.deb'
 export PYTEST_ADDOPTS+=' --py_saithrift_url=http://100.127.20.23/pipelines/Networking-acs-buildimage-Official/broadcom/internal-202012/tagged/python-saithrift_0.9.4_amd64.deb'
 cd tests
 rm -rf _cache
