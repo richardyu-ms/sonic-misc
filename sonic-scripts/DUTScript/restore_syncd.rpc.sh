@@ -1,7 +1,8 @@
-#!/bin/bash -x 
+#!/bin/bash 
 
-ASIC=brcm
-OS_VERSION=20201231.25
+. ./Utils.sh
+get_asic
+get_os_version
 
 docker stop syncd
 docker rm syncd
