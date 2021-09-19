@@ -55,4 +55,4 @@ fi
 
 #make target/docker-syncd-bfn.gz
 #make target/docker-teamd.gz
-make target/docker-saiserver-bfn.gz
+ENABLE_SYNCD_RPC=y NOSTRETCH=y KEEP_SLAVE_ON=yes make target/docker-saiserver-brcm.gz

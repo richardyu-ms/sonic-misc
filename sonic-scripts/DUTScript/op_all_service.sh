@@ -32,13 +32,13 @@ helpFunction()
    echo ""
    echo "Use to operation on services list:"
    echo  ${services[*]}
-   echo -e "\t-o|-operation [start|stop] : start or stop"
-   echo -e "\t-s|-skip [service name] : the service names in the services list. It can be like [swss;syncd]"
+   echo -e "\t-o [start|stop] : start or stop"
+   echo -e "\t-s [service name] : the service names in the services list. It can be like [swss;syncd]"
    
    exit 1 # Exit script after printing help
 }
 
-while getopts ":o:operation:s:skip" args; do
+while getopts ":o:s:" args; do
     case $args in
         o|operation)
             op=${OPTARG} 

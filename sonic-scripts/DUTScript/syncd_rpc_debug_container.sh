@@ -85,7 +85,7 @@ helpFunction()
 {
    echo ""
    echo "Setup syncd-rpc debugger environment:"
-   echo -e "\t-o|-operation [start|restore|restart] : start or restore or restart"
+   echo -e "\t-o [start|restore|restart] : start or restore or restart"
    
    exit 1 # Exit script after printing help
 }
@@ -126,9 +126,9 @@ main_fun() {
     fi
 }
 
-while getopts ":o:operation" args; do
+while getopts ":o:" args; do
     case $args in
-        o|operation)
+        o)
             op=${OPTARG} 
             ;;
         *)

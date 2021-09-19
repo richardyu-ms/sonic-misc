@@ -37,12 +37,12 @@ helpFunction()
    exit 1 # Exit script after printing help
 }
 
-while getopts ":o:operation:s:skip" args; do
+while getopts ":o:s:" args; do
     case $args in
-        o|operation)
+        o)
             op=${OPTARG} 
             ;;
-        s|skip)
+        s)
             skip=${OPTARG} 
             ;;
         *)
