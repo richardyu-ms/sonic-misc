@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Initalize the syncd-rpc debug environment automatically.
+#Including the start the syncd-rpc environment, only restart syncd-rpc for a re-attach to the sai shell, and restore the environment.
+
 syncd_shell=/usr/bin/syncd.sh
 syncd_entry_point='--entrypoint \"/bin/bash\" \\'
 syncd_target_str="--tmpfs \/var\/tmp"
