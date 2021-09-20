@@ -4,23 +4,28 @@
 save_docker() {
     docker commit $docker_name $target_docker_name
 
-    docker create --privileged -p $port:22 --user root -v /code:/data -w /data --name=$docker_instance -it $target_docker_name bash
+    docker create --privileged -p $port:22 --user root -v ~/workspace/forks:/data -w /data --name=$docker_instance -it $target_docker_name bash
     docker start $docker_instance
 
-    docker exec $docker_instance sudo apt install openssh-server
-    docker exec $docker_instance sudo adduser $user
-    docker exec $docker_instance sudo usermod -aG sudo $user
-    docker exec $docker_instance sudo mkdir /home/$user
-    docker exec $docker_instance sudo mkdir /home/$user/.ssh
-    docker exec $docker_instance sudo usermod --shell /bin/bash --home /home/$user $user
-    docker exec $docker_instance sudo chown -R $user:$user /home/$user
-    docker exec $docker_instance sudo cp -r /etc/skel/.* /home/$user/
-    docker exec $docker_instance sudo mkdir /home/$user/.ssh
+    docker exec $docker_instance apt install openssh-server
+    docker exec $docker_instance adduser $user
+    docker exec $docker_instance usermod -aG sudo $user
+    docker exec $docker_instance mkdir /home/$user
+    docker exec $docker_instance mkdir /home/$user/.ssh
+    docker exec $docker_instance usermod --shell /bin/bash --home /home/$user $user
+    docker exec $docker_instance chown -R $user:$user /home/$user
+    docker exec $docker_instance cp /etc/skel/* /home/$user/
+    docker exec $docker_instance mkdir /home/$user/.ssh
     docker cp ~/.ssh/authorized_keys $docker_instance:/home/$user/.ssh/
-    docker exec $docker_instance sudo service ssh start
-    echo "Login to docker to set password:"
-    echo "\tdocker exec -it $docker_instance bash"
-    echo "\tpasswd $user"
+    docker exec $docker_instance service ssh start
+    docker cp ~/.vscode-server $docker_instance:/home/xinlyu/
+    docker commit $docker_instance $target_docker_name
+    echo "************************************"
+    echo "You need to login to docker to set password:"
+    echo -e "\tdocker exec -it $docker_instance bash"
+    echo -e "\tpasswd $user"
+    echo "If need to update vscode known_hosts, the known_hosts file is at C:\\Users\\$user\\.ssh\\known_hosts"
+    echo "************************************"
 }
 
 check_ops() {
