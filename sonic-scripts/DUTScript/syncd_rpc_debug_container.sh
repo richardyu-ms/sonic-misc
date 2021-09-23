@@ -72,9 +72,11 @@ start_syncd_debugger_docker() {
 check_if_syncd_running() {
     echo "checking syncd debugger container."
     if [ ! "$(docker ps -q -f name=syncd)" ]; then
-        if [ "$(docker inspect -f {{.State.Running}} syncd)" == "true" ]; then
+        if [ x"$(docker inspect -f {{.State.Running}} syncd)" == x"true" ]; then
             echo "Syncd start."
             return 0
+        else
+            echo "Syncd docker state:$(docker inspect -f {{.State.Running}} syncd)"
         fi
     fi
     echo "Syncd does not start."

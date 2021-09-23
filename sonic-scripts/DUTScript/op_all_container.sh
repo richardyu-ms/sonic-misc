@@ -7,7 +7,8 @@ op_containers(){
         if [[ x"$skip" =~ x"$cnt" ]]; then
             echo "Skip [$op] for container [$cnt]."
         else
-           echo "docker $op $cnt"
+           echo "[$op] docker: [$serv]."
+           docker $op $cnt
         fi
     done
 }

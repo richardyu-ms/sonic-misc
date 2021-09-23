@@ -7,7 +7,8 @@ op_service(){
         if [[ x"$skip" =~ x"$serv" ]]; then
             echo "Skip [$op] for service [$serv]."
         else
-            echo "systemctl $op $serv"
+            echo "[$op] service: [$serv]."
+            systemctl $op $serv
         fi
     done
 }

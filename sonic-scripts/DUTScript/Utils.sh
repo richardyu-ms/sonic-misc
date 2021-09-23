@@ -1,9 +1,9 @@
 #!/bin/bash 
 #show platform summary | grep "ASIC:" | awk -F'[:]' '{print $2}' | xargs
-sample="ASIC: broadcom"
+#sample="ASIC: broadcom"
 
 get_asic() {
-    ASIC_NAME=`echo $sample | grep "ASIC:" | awk -F'[:]' '{print $2}' | xargs`
+    ASIC_NAME=`show platform summary | grep "ASIC:" | awk -F'[:]' '{print $2}' | xargs`
     if [[ x"$ASIC_NAME" == x"broadcom" ]]; then
         ASIC="brcm"
     elif [[ x"$ASIC_NAME" == x"mellanox" ]]; then
