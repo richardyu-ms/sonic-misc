@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-. ./Utils.sh
+. ../Utils.sh
 get_asic
 get_os_version
 
