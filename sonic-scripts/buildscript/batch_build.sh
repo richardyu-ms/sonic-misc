@@ -1,5 +1,5 @@
 #!/bin/bash
-. ../Utils.sh
+. ./Utils.sh
 
 helpFunction()
 {
@@ -21,10 +21,11 @@ helpFunction()
    echo -e "\t-c [enable_rpc], If set, will enable_rpc build"
    echo -e "\t-d [enable_docker_build], If set, will enable_rpc build"
    echo -e "\t-r [reset] : If reset platform. if set, then need password when running"
+   echo -e "\t-f [config] : If config platform."
    exit 1 # Exit script after printing help
 }
 
-while getopts "t:p:rkcd" opt
+while getopts "t:p:rkcdf" opt
 do
    case "$opt" in
       p ) 
@@ -44,6 +45,9 @@ do
         ;;
       d ) 
         docker="true" 
+        ;;
+      f ) 
+        config="true" 
         ;;
       ? ) 
         helpFunction 
@@ -77,11 +81,10 @@ if [ ! -z "$platform" ]; then
     echo make a configure on platform: $platform
     get_asic_from_std "$platform"
     echo platform shorten name: $ASIC
-    #make PLATFORM=$platform configure
 fi
 
 if [ ! -z "$docker" ]; then
-    echo keep slave build: $keep
+    echo docker build: $docker
     build_param+="target/docker-$target-$ASIC"
     if [ "$target" == "syncd" ] && [ ! -z "$rpc" ]; then
         build_param+="-rpc"
@@ -91,15 +94,20 @@ else
    build_param=$target
 fi
 
-echo 
+echo $env_param make $build_param
 
 #sart build process
-if [ ! -z x"$reset" ]; then
-    echo make a configure reset: $reset
-    #make reset
+if [ ! -z "$reset" ]; then
+    echo make a reset: $reset
+    make reset
+    make PLATFORM=$platform configure
 fi
 
-echo $env_param make $build_param
+if [ ! -z "$config" ]; then
+    echo make configure: $config
+    make PLATFORM=$platform configure
+fi
+
 $env_param make $build_param
 #make target/docker-syncd-bfn-rpc.gz
 #make target/docker-syncd-bfn.gz
