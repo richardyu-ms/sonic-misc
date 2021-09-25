@@ -56,6 +56,8 @@ do
 done
 
 env_param="NOSTRETCH=y NOJESSIE=y "
+export NOSTRETCH=y
+export NOJESSIE=y
 build_param=""
 
 # Print helpFunction in case parameters are empty
@@ -69,11 +71,13 @@ fi
 if [ ! -z "$keep" ]; then
     echo keep slave build: $keep
     env_param+="KEEP_SLAVE_ON=y "
+    export KEEP_SLAVE_ON=y
 fi
 
 if [ ! -z "$rpc" ]; then
     echo ENABLE_SYNCD_RPC: $rpc
     env_param+="ENABLE_SYNCD_RPC=y "
+    export ENABLE_SYNCD_RPC=y
 fi
 
 #Construct the build_param
@@ -108,7 +112,7 @@ if [ ! -z "$config" ]; then
     make PLATFORM=$platform configure
 fi
 
-$env_param make $build_param
+make $build_param
 #make target/docker-syncd-bfn-rpc.gz
 #make target/docker-syncd-bfn.gz
 #make target/docker-teamd.gz
