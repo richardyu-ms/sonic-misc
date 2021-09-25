@@ -70,8 +70,8 @@ fi
 #Construct the env_param
 if [ ! -z "$keep" ]; then
     echo keep slave build: $keep
-    env_param+="KEEP_SLAVE_ON=y "
-    export KEEP_SLAVE_ON=y
+    env_param+="KEEP_SLAVE_ON=yes "
+    export KEEP_SLAVE_ON=yes
 fi
 
 if [ ! -z "$rpc" ]; then
