@@ -13,7 +13,7 @@ transfer_asic_from_platform_sum() {
     # else
     #     echo "Transfer ASIC standard name: $1"
     fi 
-    ASIC_STD_NAME=`echo $1 | grep "ASIC:" | awk -F'[:]' '{print $2}' | xargs`
+    ASIC_STD_NAME=`echo $1 | grep "ASIC:" | awk -F 'ASIC:' '{print $2}' | awk -F'[ ]' '{print $2}' | xargs`
     get_asic_from_std "$ASIC_STD_NAME" 
 }
 
