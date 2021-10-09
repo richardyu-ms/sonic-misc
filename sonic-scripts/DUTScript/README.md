@@ -9,5 +9,15 @@ docker-syncd-brcm-rpc
 the origin one can be in format like
 acs-repo.corp.microsoft.com:5001/docker-saiserver-brcm:master.39085-dirty-20210923.145659
 
+For how to get the OS version and asic name you can run the command
+```
+show version
+```
+Or check with existing docker images
+```
+docker images
+```
+Besides in the shell Utils.sh also contains some sample code for how to get those information.
+
 *Please note, the pull process will depends on the OS version and shorten ASIC name, that means the docker with the OS version number and the asic name must be published to docker registry at first. It they are not publish, you need to pull them down manually.*
 
