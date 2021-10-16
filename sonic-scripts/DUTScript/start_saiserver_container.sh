@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./op_all_service.sh -o stop
+./all_service.sh -o stop
 
 cp ./saiserver.sh /usr/bin/
 chmod +x /usr/bin/saiserver.sh

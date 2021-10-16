@@ -8,6 +8,10 @@ syncd_entry_point='--entrypoint \"/bin/bash\" \\'
 syncd_target_str="--tmpfs \/var\/tmp"
 syncd_wait_in_sec=30
 
+. ./Utils.sh
+get_asic
+get_os_version
+
 back_up_file() {
     if [ -f "$syncd_shell.bak" ]; then
         echo "$syncd_shell.bak already exists."
@@ -34,8 +38,8 @@ prepare_syncd_debug_docker() {
     ./pull_saiserver_syncd_rpc_dockers.sh
     ./start_syncd_rpc.sh
     docker cp ./syncd_rpc_shell/init_env.sh syncd:/
-    docker commit syncd docker-syncd-brcm-rpc-debug
-    docker tag docker-syncd-brcm-rpc-debug docker-syncd-brcm  
+    docker commit syncd docker-syncd-${ASIC}-rpc-debug
+    docker tag docker-syncd-${ASIC}-rpc-debug docker-syncd-${ASIC}  
     docker kill syncd
     docker rm syncd 
     $syncd_shell start
