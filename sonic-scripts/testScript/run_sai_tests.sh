@@ -1,5 +1,5 @@
 #!/bin/bash -x 
-TESTBED_NAME=vms13-4-t0
+TESTBED_NAME=[testBedName]
 
 LOG_LEVEL=info
 
@@ -16,7 +16,7 @@ echo $VAULT_PASSWORD > password.txt
 
 
 export ANSIBLE_LIBRARY=`pwd`/ansible/library/
-export export ANSIBLE_CONNECTION_PLUGINS=/data/sonic-mgmt/ansible/plugins/connection/
+export ANSIBLE_CONNECTION_PLUGINS=/data/sonic-mgmt/ansible/plugins/connection/
 export ANSIBLE_KEEP_REMOTE_FILES=1
 
 #export PYTEST_ADDOPTS=' --pdb -vvv --allow_recover --disable_loganalyzer --skip_sanity --log-file logs/test.log --log-file-level debug'
