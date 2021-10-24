@@ -7,8 +7,8 @@ get_os_version
 docker stop syncd
 docker rm syncd
 #replace syncd with syncd-rpc
-echo "Tag [docker-syncd-rpc-${ASIC}:${OS_VERSION}]  To [docker-syncd-rpc-${ASIC}]"
-docker tag docker-syncd-rpc-${ASIC}:${OS_VERSION} docker-syncd-rpc-${ASIC}
-echo "Tag [docker-syncd-rpc-${ASIC}] to  [docker-syncd-${ASIC}:latest]"
-docker tag docker-syncd-rpc-${ASIC} docker-syncd-${ASIC}:latest
+echo "Tag [docker-syncd-${ASIC}-rpc:${OS_VERSION}]  To [docker-syncd-${ASIC}-rpc]"
+docker tag docker-syncd-${ASIC}-rpc:${OS_VERSION} docker-syncd-${ASIC}-rpc
+echo "Tag [docker-syncd-${ASIC}-rpc] to  [docker-syncd-${ASIC}:latest]"
+docker tag docker-syncd-${ASIC}-rpc docker-syncd-${ASIC}:latest
 /usr/bin/syncd.sh start
