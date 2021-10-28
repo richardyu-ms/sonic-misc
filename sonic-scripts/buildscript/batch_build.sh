@@ -104,6 +104,7 @@ echo $env_param make $build_param
 if [ ! -z "$reset" ]; then
     echo make a reset: $reset
     make reset
+    make init
     make PLATFORM=$platform configure
 fi
 
