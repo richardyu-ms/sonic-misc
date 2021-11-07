@@ -33,8 +33,8 @@ helpFunction()
    echo ""
    echo "Use to operation on containers list:"
    echo  ${containers[*]}
-   echo -e "\t-o|-operation [start|stop] : start or stop"
-   echo -e "\t-s|-skip [container names] : the container names in the containers list. It can be like [swss;syncd]"
+   echo -e "\t-o [start|stop|restart] : start, restart, or stop"
+   echo -e "\t-s : the container names in the containers list. It can be like [swss;syncd]"
    
    exit 1 # Exit script after printing help
 }

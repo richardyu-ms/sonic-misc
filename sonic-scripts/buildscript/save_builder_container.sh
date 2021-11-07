@@ -40,7 +40,7 @@ check_ops() {
 helpFunction()
 {
    echo ""
-   echo "Use the store the build container to a local container."
+   echo "Use to store the build container to a local container."
    echo "Include:"
    echo "\t1.Store Target docker."
    echo "\t2.Install openssh."

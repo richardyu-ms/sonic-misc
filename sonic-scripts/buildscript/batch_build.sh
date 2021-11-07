@@ -5,8 +5,8 @@ helpFunction()
 {
    echo ""
    echo "Usage: $0 -p [platform] -r [true|false|f|t]"
-   echo -e "\t-t [target] : Actual target name you want to build, omit the [target] folder string"
-   echo -e "\t-p [Platform], If set, will make a configure, it can be:
+   echo -e "\t-t : Actual target name you want to build, omit the [target] folder string, for docker target, like [target/docker-saiserver-brcm.gz], when it enable the docker build with parameter -d, the target can be [saiserver], if other target, it same as the target in buildimage"
+   echo -e "\t-p , If set, will make a configure, it can be:
          \t barefoot
          \t broadcom
          \t marvell
@@ -17,11 +17,11 @@ helpFunction()
          \t innovium
          \t p4
          \t vs"
-   echo -e "\t-k [enable_keep_slave], If set, will keep the slave after build"
-   echo -e "\t-c [enable_rpc], If set, will enable_rpc build"
-   echo -e "\t-d [enable_docker_build], If set, will enable_rpc build"
-   echo -e "\t-r [reset] : If reset platform. if set, then need password when running"
-   echo -e "\t-f [config] : If config platform."
+   echo -e "\t-k : If set, will keep the slave after build"
+   echo -e "\t-c : If set, will enable_rpc build"
+   echo -e "\t-d : If set, will enable_rpc build"
+   echo -e "\t-r : If reset platform. if set, then need password when running"
+   echo -e "\t-f : If config platform."
    exit 1 # Exit script after printing help
 }
 
