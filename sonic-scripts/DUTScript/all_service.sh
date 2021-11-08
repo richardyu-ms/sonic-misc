@@ -33,7 +33,7 @@ helpFunction()
    echo ""
    echo "Use to operation on services list:"
    echo  ${services[*]}
-   echo -e "\t-o [start|stop] : start or stop"
+   echo -e "\t-o [start|stop|restart] : start or stop or restart"
    echo -e "\t-s [service name] : the service names in the services list. It can be like [swss;syncd]"
    
    exit 1 # Exit script after printing help
