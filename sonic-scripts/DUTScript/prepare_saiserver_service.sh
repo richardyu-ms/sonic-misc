@@ -91,8 +91,8 @@ while getopts ":v:" args; do
     esac
 done
 
-SYNCD_SCRIPT_ROOT="/home/richardyu/code/sonic-misc/sonic-scripts/DUTScript/mlnx-syncd-files"
-SAISERVER_SCRIPT_ROOT="/home/richardyu/code/sonic-misc/sonic-scripts/DUTScript/mlnx-saiserver-files"
+SYNCD_SCRIPT_ROOT=""
+SAISERVER_SCRIPT_ROOT=""
 SAISERVER_COMMON=$SAISERVER_SCRIPT_ROOT/usr/local/bin/saiserver_common.sh
 SAISERVER_LOCAL=$SAISERVER_SCRIPT_ROOT/usr/local/bin/saiserver.sh
 SAISERVER_SERVICE=$SAISERVER_SCRIPT_ROOT/usr/lib/systemd/system/saiserver.service
