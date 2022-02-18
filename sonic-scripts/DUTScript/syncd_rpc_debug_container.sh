@@ -65,7 +65,7 @@ start_syncd_debugger_docker() {
         exit 1
     fi
     echo "Syncd debugger container start, stop listeners."
-    ./op_all_listener.sh -o stop
+    ./all_listener.sh -o stop
     echo "Setup syncd-rpc env finished."
     echo "Starting syncd debug shell."
     docker exec syncd chmod +x /init_env.sh
@@ -75,7 +75,7 @@ start_syncd_debugger_docker() {
 
 check_if_syncd_running() {
     echo "checking syncd debugger container."
-    if [ ! "$(docker ps -q -f name=syncd)" ]; then
+    if [ x"$(docker ps -q -f name=syncd)" ]; then
         if [ x"$(docker inspect -f {{.State.Running}} syncd)" == x"true" ]; then
             echo "Syncd start."
             return 0
@@ -128,7 +128,7 @@ main_fun() {
         systemctl reset-failed
         echo "Restart swss service."
         systemctl restart swss
-        ./op_all_listener.sh -o start
+        ./all_listener.sh -o start
     fi
 }
 
