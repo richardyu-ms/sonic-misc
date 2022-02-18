@@ -21,3 +21,21 @@ Besides in the shell Utils.sh also contains some sample code for how to get thos
 
 *Please note, the pull process will depends on the OS version and shorten ASIC name, that means the docker with the OS version number and the asic name must be published to docker registry at first. It they are not publish, you need to pull them down manually.*
 
+For start saiserver you can use the command
+1. pull related dockers
+```
+sudo pull_saiserver_syncd_rpc_dockers.sh
+```
+2. prepare saiserver services
+```
+sudo prepare_saiserver_service.sh
+```
+3. start service
+```
+sudo systemctl start saiserver
+```
+4. You can control the saiserver inside the saiserver with commands
+```
+/usr/bin/start.sh
+/usr/sbin/saiserver -p /usr/share/sonic/hwsku/sai.profile -f /usr/share/sonic/hwsku/port_config.ini
+```

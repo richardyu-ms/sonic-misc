@@ -50,23 +50,22 @@ function comment_out_funs()
 
 function change_saiserver_version()
 {
-    echo "change saiserver version to v2"
-    sed -i "s/docker-saiserver/docker-saiserverv2/g" $SAISERVER   
+    echo "change saiserver version to $version"
+    sed -i "s/docker-saiserver/docker-saiserver$version/g" $SAISERVER   
 }
 
 check_versions() {
     # Print helpFunction in case parameters are empty
     if [ -z "$version" ]; then
-        echo "version is not set.";
-        return
+        echo "version set to default v1.";
+        version=
     fi
 
-    if [[ x"$version" != x"v2" ]]; then
+    #when v1 set the version to null
+    if [[ x"$version" != x"v2" && x"$version" != x"" ]]; then
         echo ""
         echo "Error: Version perameters is not right, it only can be [v2].";
-        helpFunction
-    else
-        change_saiserver_version
+        helpFunction        
     fi
 }
 
@@ -75,7 +74,7 @@ helpFunction()
 {
    echo ""
    echo "Prepare the script to start the saiserver services:"
-   echo -e "\t-v [v2]: saiserver version, only v2 is available"
+   echo -e "\t-v [v1|v2]: saiserver version, support v1 and v2"
    
    exit 1 # Exit script after printing help
 }
@@ -97,9 +96,16 @@ SAISERVER_COMMON=$SAISERVER_SCRIPT_ROOT/usr/local/bin/saiserver_common.sh
 SAISERVER_LOCAL=$SAISERVER_SCRIPT_ROOT/usr/local/bin/saiserver.sh
 SAISERVER_SERVICE=$SAISERVER_SCRIPT_ROOT/usr/lib/systemd/system/saiserver.service
 SAISERVER=$SAISERVER_SCRIPT_ROOT/usr/bin/saiserver.sh
-temp=/home/richardyu/code/sonic-misc/sonic-scripts/DUTScript/mlnx-saiserver-files/usr/local/bin/saiserver_common.sh
 
+check_versions
 copy_syncd_files
 change_scripts
 comment_out_funs
-check_versions
+change_saiserver_version
+
+echo "Start saiserver service"
+echo -e "\tsudo systemctl start saiserver"
+
+echo "Start sai server, run inside saiserver container with:"
+echo -e "\t/usr/bin/start.sh"
+echo -e "\t/usr/sbin/saiserver -p /usr/share/sonic/hwsku/sai.profile -f /usr/share/sonic/hwsku/port_config.ini"
