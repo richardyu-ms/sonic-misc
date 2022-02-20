@@ -106,6 +106,6 @@ change_saiserver_version
 echo "Start saiserver service"
 echo -e "\tsudo systemctl start saiserver"
 
-echo "Start sai server, run inside saiserver container with:"
+echo "Start sai server manually, run inside saiserver container with:"
 echo -e "\t/usr/bin/start.sh"
-echo -e "\t/usr/sbin/saiserver -p /usr/share/sonic/hwsku/sai.profile -f /usr/share/sonic/hwsku/port_config.ini"
+echo -e "\t/usr/sbin/saiserver -p /etc/sai.d/sai.profile -f /usr/share/sonic/hwsku/port_config.ini"
