@@ -197,10 +197,11 @@ if [[ "$EUID" -ne 0 ]]; then
     exit "${EXIT_FAILURE}"
 fi
 
-if [ -x ${LOG_SSD_HEALTH} ]; then
-    debug "Collecting logs to check ssd health before ${REBOOT_TYPE}..."
-    ${LOG_SSD_HEALTH}
-fi
+#comment out for SAI testing, this command will response a error
+#if [ -x ${LOG_SSD_HEALTH} ]; then
+#    debug "Collecting logs to check ssd health before ${REBOOT_TYPE}..."
+#    ${LOG_SSD_HEALTH}
+#fi
 
 debug "User requested rebooting device ..."
 
