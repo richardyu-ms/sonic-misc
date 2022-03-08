@@ -8,10 +8,11 @@ op_service(){
         if [[ ! -d "~/svcbak" ]]; then
             mkdir ~/svcbak
         fi
+        echo "remove service from : /etc/systemd/system/sonic.target.wants"
         mv -f /etc/systemd/system/sonic.target.wants ~
     else
+        echo "restore service from : /etc/systemd/system/sonic.target.wants"
         mv -f ~/sonic.target.wants /etc/systemd/system/sonic.target.wants
-        restore_service
     fi
     for serv in ${services[*]}; do
         if [[ x"$skip" =~ x"$serv" ]]; then
@@ -23,6 +24,8 @@ op_service(){
             else
                 if [[ x"$op" == x"remove" ]]; then
                     remove_service
+                else
+                    restore_service
                 fi
             fi
         fi
@@ -30,12 +33,14 @@ op_service(){
 
 }
 
-remove_service(){    
+remove_service(){
+    echo "remove service: [$serv]."
     mv $service_dir/$serv.service ~/svcbak
 }
 
 restore_service(){
-    mv ~/svcbak/* $service_dir/
+    echo "restore service: [$serv]."
+    mv ~/svcbak/$serv.service $service_dir/$serv.service 
 }
 
 
