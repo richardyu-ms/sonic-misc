@@ -5,7 +5,9 @@ services=("swss" "syncd" "radv" "lldp" "dhcp_relay" "teamd" "bgp" "pmon" "teleme
 service_dir='/lib/systemd/system'
 op_service(){
     if [[ x"$op" == x"remove" ]]; then
-        mkdir ~/svcbak
+        if [[ ! -d "~/svcbak" ]]; then
+            mkdir ~/svcbak
+        fi
         mv -f /etc/systemd/system/sonic.target.wants ~
     else
         mv -f ~/sonic.target.wants /etc/systemd/system/sonic.target.wants
