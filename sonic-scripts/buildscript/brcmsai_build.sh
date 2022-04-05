@@ -7,3 +7,4 @@ git clean -xdf
 popd
 git clean -xdf
 git submodule update --init --recursive -f
+git checkout -- *
