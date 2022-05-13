@@ -46,3 +46,17 @@ get_asic() {
 get_os_version() {
     OS_VERSION=`sonic-cfggen -y /etc/sonic/sonic_version.yml -v build_version`
 }
+
+check_sai_versions() {
+    # Print helpFunction in case parameters are empty
+    if [ -z "$SAI_VERSION" ]; then
+        echo "version set to default v1.";
+        SAI_VERSION=
+    fi
+
+    #when v1 set the version to null
+    if [[ x"$SAI_VERSION" != x"v2" && x"$SAI_VERSION" != x"" ]]; then
+        echo ""
+        echo "Error: Version perameters is not right, it only can be [v2].";   
+    fi
+}
