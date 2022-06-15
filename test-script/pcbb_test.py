@@ -32,19 +32,19 @@ pdb.set_trace()
 #Run the following script and check the result
 #If 09 is the standby 08 is active
 #dec=32 0x20 -> 20  active: eth 100->0 tos 0x20
-pkt = testutils.simple_tcp_packet(eth_dst=MAC_09, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=32)
+pkt = testutils.simple_tcp_packet(eth_dst=MAC_08, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=32)
 #dec=0 0x0 -> 0 active: eth 100->0 tos 0x0
-pkt = testutils.simple_tcp_packet(eth_dst=MAC_09, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=0)
+pkt = testutils.simple_tcp_packet(eth_dst=MAC_08, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=0)
 #dec=132 0x84 -> 84 active: eth 100->0 tos 0x84
-pkt = testutils.simple_tcp_packet(eth_dst=MAC_09, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=132)
+pkt = testutils.simple_tcp_packet(eth_dst=MAC_08, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=132)
 #dec=12 0xc -> 0xc active: eth 100->0 tos 0xc
-pkt = testutils.simple_tcp_packet(eth_dst=MAC_09, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=12)
+pkt = testutils.simple_tcp_packet(eth_dst=MAC_08, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=12)
 #dec=16 0x10 -> 0x10 active: eth 100->0 tos 0x10
-pkt = testutils.simple_tcp_packet(eth_dst=MAC_09, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=16)
+pkt = testutils.simple_tcp_packet(eth_dst=MAC_08, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=16)
 #dec=184 0xb8 -> 0xb8 active: eth 100->0 tos 0xb8
-pkt = testutils.simple_tcp_packet(eth_dst=MAC_09, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=184)
+pkt = testutils.simple_tcp_packet(eth_dst=MAC_08, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=184)
 #dec=192 0xc0 -> 0c0 active: eth 100->0 tos 0xc0
-pkt = testutils.simple_tcp_packet(eth_dst=MAC_09, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=192)
+pkt = testutils.simple_tcp_packet(eth_dst=MAC_08, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_tos=192)
 
 #Send packet 
 sendp(pkt, iface='eth58', count=1000)
@@ -54,3 +54,13 @@ sendp(pkt, iface='eth58', count=1000)
 #portstat
 #For standby go to the PTF server and capture the packet
 sendp(pkt, iface='eth58', count=10)
+
+sendp(pkt, iface='eth60', count=10)
+
+pkt = testutils.simple_tcp_packet(eth_dst=MAC_08, eth_src=MAC_DUMMY, ip_src=IP_DUMMY, ip_dst=IP_SERVER, ip_dscp=2, ip_ecn=1)
+
+inner_pkt=testutils.simple_ip_only_packet(ip_dst=IP_SERVER, ip_src=IP_DUMMY, ip_ttl=63, ip_tos=13)
+pkt_tunnel=testutils.simple_ipv4ip_packet(eth_dst=MAC_08, eth_src=MAC_DUMMY, ip_src=IP_08, ip_dst=IP_09, ip_tos=32, ip_ttl=63, inner_frame=inner_pkt)
+sendp(pkt_tunnel, iface='eth60', count=10)
+
+pkt = testutils.simple_tcp_packet(eth_dst=MAC_08, eth_src=MAC_DUMMY, ip_dst=IP_SERVER, ip_src=IP_DUMMY, ip_dscp=3, ip_ecn=1, ip_ttl=63)
