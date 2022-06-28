@@ -8,7 +8,8 @@ syncd_entry_point='--entrypoint \"/bin/bash\" \\'
 syncd_target_str="--tmpfs \/var\/tmp"
 syncd_wait_in_sec=30
 
-. ./Utils.sh
+DIR=$(dirname $(readlink -f "$0")) # absolute path
+. $DIR/Utils.sh
 get_asic
 get_os_version
 
