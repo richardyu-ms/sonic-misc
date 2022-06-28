@@ -51,7 +51,7 @@ check_sai_versions() {
     # Print helpFunction in case parameters are empty
     if [ -z "$SAI_VERSION" ]; then
         echo "version set to default v1.";
-        SAI_VERSION=
+        SAI_VERSION=  #set the version to null
     fi
 
     #when v1 set the version to null

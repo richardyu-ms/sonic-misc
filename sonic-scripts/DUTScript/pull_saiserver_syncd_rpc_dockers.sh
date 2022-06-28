@@ -1,5 +1,6 @@
 #!/bin/bash 
-. ./Utils.sh
+DIR=$(dirname $(readlink -f "$0")) # absolute path
+. $DIR/Utils.sh
 get_asic
 get_os_version
 
