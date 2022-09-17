@@ -19,8 +19,10 @@ pull_syncd_rpc(){
 pull_docker(){
     if [[ x"$TARGET" =~ x"syncd" ]]; then
         echo "Pull docker syncd rpc"
+        pull_syncd_rpc
     else
         echo "Pull docker saiserver $SAI_VERSION"
+        pull_saiserver
     fi 
 }
 
